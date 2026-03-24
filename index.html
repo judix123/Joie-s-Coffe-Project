@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Joie's Coffee Daily</title>
+
+<style>
+body{
+    font-family: Arial, sans-serif;
+    background:#f4f4f4;
+    text-align:center;
+}
+
+h1{
+    color:#4b2e2e;
+}
+
+table{
+    margin:auto;
+    border-collapse: collapse;
+    width:70%;
+    background:white;
+}
+
+th, td{
+    border:1px solid #ccc;
+    padding:10px;
+    text-align:center;
+}
+
+th{
+    background:#6f4e37;
+    color:white;
+}
+
+tr:nth-child(even){
+    background:#f2f2f2;
+}
+</style>
+
+</head>
+
+<body>
+
+<h1>Joie's Coffee Daily</h1>
+<h3>Available</h3>
+
+<table>
+<tr>
+<th>Coffee</th>
+<th>Size</th>
+<th>Price (Hot)</th>
+<th>Price (Cold)</th>
+</tr>
+
+<tbody id="data"></tbody>
+</table>
+
+<script>
+fetch('coffee.json')
+.then(response => response.json())
+.then(data => {
+    for(let i = 0; i < data.length; i++){
+        document.getElementById("data").innerHTML +=
+        "<tr><td>" + data[i].coffee +
+        "</td><td>" + data[i].size +
+        "</td><td>" + data[i].price_hot +
+        "</td><td>" + data[i].price_cold +
+        "</td></tr>";
+    }
+});
+</script>
+
+</body>
+</html>
